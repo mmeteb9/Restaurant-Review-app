@@ -162,10 +162,11 @@ createRestaurantHTML = (restaurant) => {
 
     const image = document.createElement('img');
     image.className = 'restaurant-img';
+    image.alt = "Image of " + restaurant.name + " Restaurant";
     image.src = DBHelper.imageUrlForRestaurant(restaurant);
     li.append(image);
 
-    const name = document.createElement('h1');
+    const name = document.createElement('h2');
     name.innerHTML = restaurant.name;
     li.append(name);
 
@@ -211,3 +212,20 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 } */
+
+
+
+window.addEventListener("load", function () {
+
+    let leafLet = document.querySelector('.leaflet-control-attribution').children;
+    let myMarkers = document.querySelector('.leaflet-marker-pane').children;
+
+    //for adding tabondex 
+    for (let i = 0; i < leafLet.length; i++) {
+        leafLet[i].setAttribute("tabindex", "-1");
+    }
+    // adding tabindex for map markers
+    for (let i = 0; i < myMarkers.length; i++) {
+        myMarkers[i].setAttribute("tabindex", "-1");
+    }
+})
